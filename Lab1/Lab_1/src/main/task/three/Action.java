@@ -1,14 +1,14 @@
 package task.three;
 
 public class Action {
-    private final String description;
+    private final String aciton;
 
-    public Action(String description) {
-        this.description = description;
+    public Action(String aciton) {
+        this.aciton = aciton;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAciton() {
+        return aciton;
     }
 
 }

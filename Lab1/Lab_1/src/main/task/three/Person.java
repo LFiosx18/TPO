@@ -1,51 +1,91 @@
 package task.three;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Person {
     private final String name;
-    private final ArrayList<String> feelings;
-    private final ArrayList<Action> actions;
+    private final Feeling feeling;
     public BodyParts bodyParts;
+    public ArrayList<Head> heads;
+    public ArrayList<Action> actions;
 
     public Person(String name) {
         this.name = name;
-        this.feelings = new ArrayList<>();
-        this.actions = new ArrayList<>();
+        this.feeling = new Feeling();
         this.bodyParts = new BodyParts();
+        this.actions = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public void addFeeling(String feeling) {
-        feelings.add(name + ' ' + feeling);
+    public String addBodyPart(String bp) {
+        return bodyParts.addBodyPart(this, bp);
     }
 
-    public ArrayList<String> getFeelings() {
-        return feelings;
+    public String addFacePart(String fp, String h) {
+        return bodyParts.addFacePart(this, h, fp);
     }
 
-    public void addAction(String ...action) {
-        StringBuilder s = new StringBuilder();
-        for (String i: action)
-            s.append(i).append(' ');
-        actions.add(new Action(s.toString()));
+    public String getBodyParts() {
+        return bodyParts.toString();
     }
 
-    public StringBuilder getActions() {
-        StringBuilder s = new StringBuilder();
-        for (Action action: actions) {
-            s.append(action.getDescription());
-            s.append('\n');
+    public String addAction(String act) {
+        Action newAction = new Action(act);
+        actions.add(newAction);
+        return name + ' ' + newAction.getAciton();
+    }
+
+    public String addAction(String act, Person p) {
+        Action newAction = new Action(act + ' ' + p.getName());
+        actions.add(newAction);
+        return name + ' ' + newAction.getAciton();
+    }
+
+    public String addAction(String ... act) {
+        StringBuilder acts = new StringBuilder();
+        for (String s: act) {
+            acts.append(s).append(' ');
         }
-        return s;
+        Action newAction = new Action(acts.toString());
+        actions.add(newAction);
+        return name + ' ' + newAction.getAciton();
     }
 
+    public String showActions() {
+        StringBuilder result = new StringBuilder();
+        for (Action act: actions){
+            result.append(name).append(' ').append(act.getAciton()).append(' ');
+        }
+        return result.toString();
+    }
+
+    public String addFeeling(String feel) {
+        if (bodyParts.getBodyPart("голова") != null) {
+            feeling.addFeeling(feel);
+            return name + ' ' + feel;
+        }
+        return "У существа " + name + " нет головы, он не может испытывать чувтсва!";
+    }
+
+    public String addFeeling(String bodyPart, String feel) {
+        if (bodyParts.getBodyPart(bodyPart) != null) {
+            for (Head h: heads) {
+                if (Objects.equals(h.getHeadName(), bodyPart)) {
+                    h.addFeelingToHead(feel);
+                    return bodyPart + ' ' + feel;
+                }
+            }
+            return "Такой головы не существует";
+        }
+        return "Такой части тела не найдено";
+    }
+
+    @Override
     public String toString() {
-        return "Человек по имени " + name;
+        return "Существо по имени " + name;
     }
 }

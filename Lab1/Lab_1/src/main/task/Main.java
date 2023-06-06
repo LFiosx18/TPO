@@ -7,33 +7,41 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Person artur = new Person("Артур");
-        Person monster = new Person("Странный человек");
+        HashTable<Number> col = new HashTable<>();
+        double[] arr = {520, 999, 101, 1, 10, 54, 647, 17};
+        System.out.println("Res: " + Arrays.toString(col.sort(arr, false, 1)));
 
+//        Person artur = new Person("Artur");
+//        Person monster = new Person("Monster");
+//
+//        print(artur.addBodyPart("голова"));
+//
+//
+//        print(artur.addFeeling("нервничал"));
+//        print(artur.addAction("вошёл"));
+//        print(artur.addFeeling("был ошеломлён"));
+//        artur.addFacePart("глаза", "голова");
+//        print(artur.addAction("увидел", monster));
+//
+//        monster.addBodyPart("ноги");
+//        print(monster.addAction("положил", monster.bodyParts.getBodyPart("ноги"), "на пульт"));
+//        monster.addBodyPart("левой рукой");
+//        monster.addBodyPart("правая голова");
+//        monster.addFacePart("зубы", "правая голова");
+//        print(monster.addAction("ковырялся", monster.bodyParts.getBodyPart("левой рукой"), "в зубах правой головы"));
+//        print(monster.addAction(monster.bodyParts.getBodyPart("правая голова"), "занята делом"));
+//        monster.addBodyPart("левая голова");
+//        print(monster.addFeeling(monster.bodyParts.getBodyPart("левая голова"), "улыбалась"));
+//
+//        print(artur.addAction("не верил своим", artur.bodyParts.getBodyPart("глаза")));
+//        artur.addFacePart("челюсть", "голова");
+//        print(artur.addAction("челюсть отвисла"));
+//
+//        print(artur.getBodyParts());
+//        print(artur.showActions());
+    }
 
-        artur.addFeeling("нервничал");
-        artur.addFeeling("был ошеломлён");
-        artur.addAction(artur.getName(), "вошёл");
-        artur.addAction(artur.getName(), "увидел", monster.getName());
-        artur.bodyParts.bodyPartsAdd("глаза");
-        artur.bodyParts.bodyPartsAdd("челюсть");
-        artur.addAction(artur.getName(), "не верил своим", artur.bodyParts.getBodyPart("глаза"));
-        artur.addAction("Его", artur.bodyParts.getBodyPart("челюсть"), "отвисла");
-
-
-        monster.bodyParts.bodyPartsAdd("ноги");
-        monster.addAction(monster.getName(), "положил на стол", monster.bodyParts.getBodyPart("ноги"));
-        monster.bodyParts.bodyPartsAdd("левая рука");
-        monster.bodyParts.bodyPartsAdd("правая голова");
-        monster.bodyParts.bodyPartsAdd("зубы");
-        monster.addAction(monster.getName(), "ковырял", monster.bodyParts.getBodyPart("левая рука"), "в", monster.bodyParts.getBodyPart("зубы"), monster.bodyParts.getBodyPart("правая голова"));
-        monster.bodyParts.bodyPartsAdd("левая голова");
-        monster.addAction(monster.bodyParts.getBodyPart("правая голова"), "была занята делом");
-        monster.addAction(monster.bodyParts.getBodyPart("левая голова"), "широко улыбалась");
-
-        System.out.println(artur.getActions());
-        System.out.println(artur.getFeelings());
-        System.out.println(monster.getActions());
-
+    public static void print(String str) {
+        System.out.println(str);
     }
 }

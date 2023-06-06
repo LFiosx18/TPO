@@ -5,9 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import task.three.Person;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,53 +12,65 @@ class DomainTest {
     static Person person1;
     static Person person2;
 
-    @BeforeAll
-    public static void createAll() {
+    @BeforeEach
+    void createAll() {
         person1 = new Person("Артур");
         person2 = new Person("Двухголовый человек");
     }
 
     @Test
     void checkToString() {
-        assertEquals(person1.toString(), "Человек по имени Артур");
-        assertEquals(person2.toString(), "Человек по имени Двухголовый человек");
+        assertEquals(person1.toString(), "Существо по имени Артур");
+        assertEquals(person2.toString(), "Существо по имени Двухголовый человек");
     }
 
     @Test
-    void checkFeelings() {
-        person1.addFeeling("нервничал");;
-        person1.addFeeling("был ошеломлён");
-        person2.addFeeling("улыбался");
+    void checkGetBodyParts() {
+        person1.addBodyPart("рука");
+        person1.addBodyPart("голова");
+        person1.addBodyPart("челюсть");
+        person1.addBodyPart("глаза");
+        person1.addBodyPart("челюсть");
+        person1.addBodyPart("рука");
 
-        String[] p1True = {"Артур нервничал", "Артур был ошеломлён"};
-        String[] p1 = person1.getFeelings().toArray(new String[0]);
-        assertArrayEquals(p1, p1True);
-
-        String[] p2True = {"Двухголовый человек улыбался"};
-        String[] p2 = person2.getFeelings().toArray(new String[0]);
-        assertArrayEquals(p2, p2True);
+        assertEquals(person1.getBodyParts(), "рука голова ");
     }
 
     @Test
-    void checkActions() {
-        person1.addAction(person1.getName(), "вошёл");
-        person1.addAction(person1.getName(), "увидел", person2.getName());
-        person2.addAction(person2.bodyParts.getBodyPart("правая голова"), "была занята делом");
-        person2.addAction(person2.bodyParts.getBodyPart("левая голова"), "широко улыбалась");
-
-        String actions1 = "Артур вошёл \nАртур увидел Двухголовый человек \n";
-        assertEquals(person1.getActions().toString(), actions1);
-
-        String actions2 = "Часть тела не найдена была занята делом \nЧасть тела не найдена широко улыбалась \n";
-        assertEquals(person2.getActions().toString(), actions2);
+    void checkAddBodyParts() {
+        assertEquals(person1.addBodyPart("глаза"), "Часть тела \"глаза\" должна быть добавлена к голове");
+        assertEquals(person1.addBodyPart("рука"), "У Артур есть рука");
+        assertEquals(person1.addBodyPart("рука"), "Часть тела рука уже существует");
     }
 
     @Test
-    void checkBodyPart() {
-        person1.bodyParts.bodyPartsAdd("глаза");
-        person1.bodyParts.bodyPartsAdd("челюсть");
-        assertEquals(person1.bodyParts.getBodyPart("глаза"), "глаза");
-        assertEquals(person1.bodyParts.getBodyPart("челюсть"), "челюсть");
-        assertEquals(person1.bodyParts.getBodyPart("нос"), "Часть тела не найдена");
+    void checkAddFacePart() {
+        assertEquals(person1.addFacePart("глаза", "голова"), "Артур не имеет головы");
+        person1.addBodyPart("голова");
+        assertEquals(person1.addFacePart("глаза", "голова"), "У существа Артур в голова появился глаза");
+        assertEquals(person1.addFacePart("нос", "левая голова"), "Неопознанная голова");
+        assertEquals(person1.addFacePart("щёки", "голова"), "Неопознанная часть лица..");
     }
+
+    @Test
+    void checkAddFeeling() {
+        assertEquals(person1.addFeeling("удивлён"), "У существа Артур нет головы, он не может испытывать чувтсва!");
+        person1.addBodyPart("голова");
+        assertEquals(person1.addFeeling("удивлён"), "Артур удивлён");
+        assertEquals(person1.addFeeling("голова", "ошеломлён"), "голова ошеломлён");
+        assertEquals(person1.addFeeling("нога", "счастлива"), "Такой части тела не найдено");
+        person1.addBodyPart("рука");
+        assertEquals(person1.addFeeling("рука", "разочарована"), "Такой головы не существует");
+    }
+
+    @Test
+    void checkShowAction() {
+        person1.addAction("зашёл");
+        person1.addAction("посмотрел");
+        person1.addAction("увидел", person2.getName());
+        person1.addAction("развернулся", "упал", "поднялся", "пошёл домой");
+
+        assertEquals(person1.showActions(), "Артур зашёл Артур посмотрел Артур увидел Двухголовый человек  Артур развернулся упал поднялся пошёл домой  ");
+    }
+
 }

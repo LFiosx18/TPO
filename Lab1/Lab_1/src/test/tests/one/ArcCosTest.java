@@ -51,4 +51,10 @@ class ArcCosTest{
     public void positiveNearOneDouble(double value) {
         Assertions.assertEquals(Math.acos(value), arccos(value), delta);
     }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {Integer.MAX_VALUE, Integer.MIN_VALUE, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY})
+    public void bigData(double value) {
+        Assertions.assertEquals(Math.acos(value), arccos(value), delta);
+    }
 }

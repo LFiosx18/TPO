@@ -12,7 +12,7 @@ public class ArcCos {
         double tmp = pow(x, n * 2 + 1) / (2 * n * (2 * n + 1));
         double res = tmp;
         n++;
-        while (abs(tmp) > 0.000001) {
+        while (abs(tmp) > 0.000001 && n<10000) {
             tmp = tmp * pow(x, 2) * pow((2 * n - 1), 2) / ((2 * n) * (2 * n + 1));
             res += tmp;
             n++;
