@@ -26,7 +26,7 @@ public class DeletePostTest {
             confirmDelete();
             checkDelete();
         }
-        else noPost();
+        else checkNoPost();
     }
 
     @AfterAll
@@ -87,7 +87,7 @@ public class DeletePostTest {
         Helpers.timeout();
     }
 
-    public void noPost() {
+    public void checkNoPost() {
         String xpath = "/html/body/div[1]/div/div[1]/div[1]/div/div[2]/div[2]/div[2]/div/div/div[1]/article";
         drivers.forEach(driver -> {
             String postText = Helpers.findElement(driver, By.xpath(xpath)).getText();
