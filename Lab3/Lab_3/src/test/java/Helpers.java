@@ -95,10 +95,6 @@ public class Helpers {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(by));
     }
 
-    public static WebElement findJustElement(WebDriver driver, By by) {
-        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(by));
-    }
-
     public static void signInToSite(WebDriver driver) {
         driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div[1]/header/div/div/div/div/div[3]/ul/li[2]/button")).click();
         driver.findElement(By.xpath("/html/body/div[3]/div/div/div/div/div/form/div[5]/button")).click();

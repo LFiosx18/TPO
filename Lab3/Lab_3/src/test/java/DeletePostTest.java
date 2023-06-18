@@ -17,7 +17,7 @@ public class DeletePostTest {
     }
 
     @Test
-    public void testCreatePost() {
+    public void testDeletePost() {
         openSite();
         signIn();
         goToMyPage();

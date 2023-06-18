@@ -18,7 +18,7 @@ public class MyProfileTest {
     }
 
     @Test
-    public void testCreatePost() {
+    public void testProfileView() {
         openSite();
         signIn();
         goToMyPage();

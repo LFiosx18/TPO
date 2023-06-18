@@ -19,7 +19,7 @@ public class SignInTest {
     }
 
     @Test
-    public void testSignInWithMyPage() {
+    public void testSignIn() {
         openSiteToSignIn();
         clickSignInOnTheMainPage();
         clickEnterByEmail();
@@ -27,8 +27,6 @@ public class SignInTest {
         enterPassword();
         clickSignInButton();
         checkMyName();
-//        goToMyPage();
-//        checkUsernameInProfile();
     }
 
     @AfterAll
@@ -79,23 +77,4 @@ public class SignInTest {
             Assertions.assertEquals("Лиса", name);
         });
     }
-
-//    public void goToMyPage() {
-//        String xpath = "/html/body/div[1]/div/div[1]/div/header/div/div/div/div/div[2]/div/button";
-//        String xpathMy = "/html/body/div[3]/div/div/div/a[1]";
-//        drivers.forEach(driver -> {
-//            Helpers.findElement(driver, By.xpath(xpath)).click();
-//            Helpers.findElement(driver, By.xpath(xpathMy)).click();
-//        });
-//        Helpers.timeout();
-//    }
-
-//    public void checkUsernameInProfile() {
-//        String xpath = "/html/body/div[1]/div/div[1]/div[1]/div/div[2]/div[1]/div[2]/div[2]/div/h2/a";
-//        drivers.forEach(driver -> {
-//            String actualScreenName = Helpers.findElement(driver, By.xpath(xpath)).getText();
-//            Assertions.assertEquals("Лиса", actualScreenName);
-//        });
-//        Helpers.timeout();
-//    }
 }

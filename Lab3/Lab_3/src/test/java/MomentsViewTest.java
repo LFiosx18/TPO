@@ -17,7 +17,7 @@ public class MomentsViewTest {
     }
 
     @Test
-    public void testCreatePost() {
+    public void testMomentsView() {
         openSite();
         signIn();
         goToMoments();

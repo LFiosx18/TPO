@@ -17,7 +17,7 @@ public class LogOutTest {
     }
 
     @Test
-    public void testCreatePost() {
+    public void testLogOut() {
         openSite();
         signIn();
         logOut();
