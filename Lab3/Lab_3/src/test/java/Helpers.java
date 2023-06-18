@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class Helpers {
-    private static final int millis = 500;
+    private static final int millis = 700;
 
     public static void setupDrivers() {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/drivers/chromedriver1.exe");
@@ -93,6 +93,10 @@ public class Helpers {
 
     public static WebElement findElement(WebDriver driver, By by) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public static WebElement findJustElement(WebDriver driver, By by) {
+        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     public static void signInToSite(WebDriver driver) {
