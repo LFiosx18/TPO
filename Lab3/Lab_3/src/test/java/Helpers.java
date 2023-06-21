@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class Helpers {
-    private static final int millis = 700;
+    private static final int millis = 2000;
 
     public static void setupDrivers() {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/drivers/chromedriver1.exe");

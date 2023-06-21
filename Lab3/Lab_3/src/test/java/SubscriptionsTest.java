@@ -74,18 +74,15 @@ public class SubscriptionsTest {
         drivers.forEach(driver -> Helpers.findElement(driver, By.xpath(xpath)).click());
         Helpers.timeout();
     }
-
-    public void checkFollow() {
-        String xpath = "/html/body/div[1]/div/div[1]/div[1]/div/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/div/div/button";
-        drivers.forEach(driver -> Assertions.assertTrue(true));
-        Helpers.timeout();
-    }
     public void clickMy() {
         String xpath = "/html/body/div[3]/div/div/div/button[3]";
         drivers.forEach(driver -> Helpers.findElement(driver, By.xpath(xpath)).click());
         Helpers.timeout();
     }
 
-
-
+    public void checkFollow() {
+        String xpath = "/html/body/div[1]/div/div[1]/div[1]/div/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/div/div/button";
+        drivers.forEach(driver -> Assertions.assertTrue(true));
+        Helpers.timeout();
+    }
 }
